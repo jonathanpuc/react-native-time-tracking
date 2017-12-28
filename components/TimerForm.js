@@ -3,6 +3,20 @@ import { StyleSheet, View, Text, TextInput } from 'react-native';
 
 import TimerButton from './TimerButton';
 
+// export default class TimerForm extends React.Component {
+//   constructor(props) {
+//     super(props);
+
+//     const {id, title, project} = props;
+
+//     this.state = {
+//       title: id ? title : '';
+//       project: id ? project : ''
+//     }
+//   };
+
+// }
+
 export default function TimerForm({ id, title, project }) {
   const submitText = id ? 'Update' : 'Create';
 
