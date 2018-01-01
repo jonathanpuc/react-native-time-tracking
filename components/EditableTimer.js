@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React from "react";
 
 import TimerForm from "./TimerForm";
@@ -75,5 +76,17 @@ export default class EditableTimer extends React.Component {
 
   closeForm = () => {
     this.setState(() => ({ editFormOpen: false }));
+  };
+
+  static propTypes = {
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    project: PropTypes.string.isRequired,
+    elapsed: PropTypes.number.isRequired,
+    isRunning: PropTypes.bool.isRequired,
+    onFormSubmit: PropTypes.func.isRequired,
+    onDeleteTimer: PropTypes.func.isRequired,
+    onStartPress: PropTypes.func.isRequired,
+    onStopPress: PropTypes.func.isRequired
   };
 }

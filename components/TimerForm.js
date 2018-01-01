@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React from "react";
 import { StyleSheet, View, Text, TextInput } from "react-native";
 
@@ -77,6 +78,19 @@ export default class TimerForm extends React.Component {
       </View>
     );
   }
+  static propTypes = {
+    id: PropTypes.string,
+    title: PropTypes.string,
+    project: PropTypes.string,
+    onFormSubmit: PropTypes.func.isRequired,
+    onFormClose: PropTypes.func.isRequired
+  };
+
+  static defaultProps = {
+    id: null,
+    title: "",
+    project: ""
+  };
 }
 
 const styles = StyleSheet.create({

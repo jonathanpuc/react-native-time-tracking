@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 
@@ -38,6 +39,10 @@ export default class ToggleableTimerForm extends React.Component {
 
     onFormSubmit(timer);
     this.setState(() => ({ isOpen: false }));
+  };
+
+  static propTypes = {
+    onFormSubmit: PropTypes.func.isRequired
   };
 }
 
