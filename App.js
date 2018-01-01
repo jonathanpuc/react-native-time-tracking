@@ -25,6 +25,30 @@ export default class App extends React.Component {
       }
     ]
   };
+
+  componentDidMount() {
+    const TIME_INTERVAL = 1000;
+
+    this.intervalId = setInterval(() => {
+      const { timers } = this.state;
+
+      this.setState(() => ({
+        timers: timers.map(timer => {
+          const { elapsed, isRunning } = timer;
+
+          return {
+            ...timer,
+            elapsed: isRunning ? elapsed + TIME_INTERVAL : elapsed
+          };
+        })
+      }));
+    }, TIME_INTERVAL);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.intervalId);
+  }
+
   render() {
     const { timers } = this.state;
     return (
@@ -44,6 +68,8 @@ export default class App extends React.Component {
               isRunning={isRunning}
               onFormSubmit={this.handleFormSubmit}
               onDeleteTimer={this.handleDeleteTimer}
+              onStopPress={this.toggleTimer}
+              onStartPress={this.toggleTimer}
             />
           ))}
         </ScrollView>
@@ -84,6 +110,27 @@ export default class App extends React.Component {
     this.setState(() => ({
       timers: timers.filter(timer => timer.id !== id)
     }));
+  };
+
+  toggleTimer = id => {
+    this.setState(prevState => {
+      const { timers } = prevState;
+
+      return {
+        timers: timers.map(timer => {
+          const { isRunning } = timer;
+
+          if (id === timer.id) {
+            return {
+              ...timer,
+              isRunning: !isRunning
+            };
+          }
+
+          return timer;
+        })
+      };
+    });
   };
 }
 

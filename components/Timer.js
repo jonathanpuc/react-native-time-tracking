@@ -30,10 +30,22 @@ export default class Timer extends React.Component {
             onPress={onRemovePress}
           />
         </View>
-        <TimerButton color="#21BA45" title="Start" />
+        {this.renderActionButton()}
       </View>
     );
   }
+
+  renderActionButton = () => {
+    const { isRunning, onStartPress, onStopPress } = this.props;
+
+    if (isRunning) {
+      return <TimerButton color="#DB2828" title="Stop" onPress={onStopPress} />;
+    } else {
+      return (
+        <TimerButton color="#21BA45" title="Start" onPress={onStartPress} />
+      );
+    }
+  };
 }
 
 const styles = StyleSheet.create({
